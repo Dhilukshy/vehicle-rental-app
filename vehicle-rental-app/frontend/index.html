@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>DriveEase | Welcome</title>
+</head>
+<body class="dark-mode" style="display:flex; justify-content:center; align-items:center; height:100vh;">
+    <div style="width: 400px;">
+        <h1 style="text-align: center; font-size: 3rem; margin-bottom: 2rem; font-weight: 800;">Drive<span>Ease.</span></h1>
+        
+        <div style="background: var(--glass); padding: 2.5rem; border-radius: 30px; border: 1px solid var(--border); backdrop-filter: blur(20px);">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button id="t-cust" onclick="setRole('Customer')" style="flex:1; padding:10px; border-radius:10px; border:none; background:var(--primary); color:white; font-weight:bold; cursor:pointer;">Customer</button>
+                <button id="t-own" onclick="setRole('Owner')" style="flex:1; padding:10px; border-radius:10px; border:none; background:transparent; color:#94a3b8; font-weight:bold; cursor:pointer;">Owner</button>
+            </div>
+
+            <input type="text" id="uName" placeholder="Enter Name" style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 12px; color: white; margin-bottom: 15px; outline: none;">
+            
+            <div id="pArea" style="display: none;">
+                <input type="password" id="uPass" placeholder="Owner Password" style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 12px; color: white; margin-bottom: 15px; outline: none;">
+            </div>
+            
+            <button onclick="auth()" id="goBtn" style="width: 100%; padding: 15px; border-radius: 12px; border: none; background: var(--primary); color: white; font-weight: 800; cursor: pointer;">Access Dashboard</button>
+        </div>
+    </div>
+
+    <script>
+        let role = 'Customer';
+        function setRole(r) {
+            role = r;
+            document.getElementById('pArea').style.display = r === 'Owner' ? 'block' : 'none';
+            document.getElementById('t-cust').style.background = r === 'Customer' ? '#10b981' : 'transparent';
+            document.getElementById('t-own').style.background = r === 'Owner' ? '#fbbf24' : 'transparent';
+            document.getElementById('t-own').style.color = r === 'Owner' ? '#000' : '#94a3b8';
+            document.getElementById('goBtn').style.background = r === 'Owner' ? '#fbbf24' : '#10b981';
+            document.getElementById('goBtn').style.color = r === 'Owner' ? '#000' : '#fff';
+        }
+
+        function auth() {
+            const name = document.getElementById('uName').value;
+            if(!name) return alert("Enter Name");
+            localStorage.setItem('user', name);
+            if(role === 'Owner') {
+                if(document.getElementById('uPass').value === '123') window.location.href='owner-dashboard.html';
+                else alert("Wrong Owner Pass (Hint: 123)");
+            } else window.location.href='customer-dashboard.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Executive | DriveEase</title>
+    <link rel="stylesheet" href="owner-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="owner-body">
+    <aside class="sidebar">
+        <div class="sidebar-logo">Drive<span>Ease.</span></div>
+        <nav class="sidebar-nav">
+            <button class="nav-item active" onclick="showSection('dashboard', this)">Dashboard</button>
+            <button class="nav-item" onclick="showSection('add-vehicle', this)">Add Vehicle</button>
+            <button class="nav-item" onclick="showSection('my-vehicles', this)">My Vehicles</button>
+            <button class="nav-item" onclick="showSection('messages', this)">Messages</button>
+            <button class="nav-item" onclick="showSection('notifications', this)">Notifications</button>
+        </nav>
+        <button class="logout-btn" onclick="location.href='index.html'">Logout</button>
+    </aside>
+
+    <main class="content">
+        <section id="dashboard" class="content-section">
+            <h1>Executive Overview</h1>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>$12,450</h3><p>Total Revenue</p></div>
+                <div class="stat-card"><h3>14</h3><p>Active Rentals</p></div>
+                <div class="stat-card"><h3>4.8</h3><p>Avg Rating</p></div>
+            </div>
+            <div class="recent-feedback">
+                <h3>Recent Feedback</h3>
+                <div id="feedback-list">
+                    <p class="muted">"Tesla Model 3 was in perfect condition." - <i>Supun P.</i></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="add-vehicle" class="content-section" style="display:none;">
+            <h1>List New Vehicle</h1>
+            <form id="vehicleForm" class="glass-form">
+                <div class="form-grid">
+                    <input type="text" id="vName" placeholder="Vehicle Name" required>
+                    <select id="vCat">
+                        <option>Car</option><option>Bike</option><option>Van</option>
+                        <option>Bus</option><option>Mini Bus</option><option>3-Wheeler</option>
+                    </select>
+                    <input type="text" id="vLoc" placeholder="Location (City)">
+                    <input type="number" id="vSeats" placeholder="Seats">
+                    <input type="number" id="vPrice" placeholder="Price/Day ($)">
+                    <input type="text" id="vNum" placeholder="Vehicle Number (Reg)">
+                    <input type="number" id="vDriver" placeholder="Driver Fee ($)">
+                    <input type="text" id="vImg" placeholder="Main Image URL">
+                </div>
+                <textarea id="vDesc" placeholder="Detailed Description (Condition, Features, Rules...)"></textarea>
+                <button type="submit" class="submit-btn">List Vehicle</button>
+            </form>
+        </section>
+
+        <section id="my-vehicles" class="content-section" style="display:none;">
+            <h1>My Fleet</h1>
+            <div id="fleet-grid" class="fleet-grid">
+                </div>
+        </section>
+
+        <section id="messages" class="content-section" style="display:none;">
+            <h1>Messages</h1>
+            <div class="chat-placeholder">
+                <p>No active conversations. Your chats with customers will appear here.</p>
+            </div>
+        </section>
+
+        <section id="notifications" class="content-section" style="display:none;">
+            <h1>Notifications</h1>
+            <ul class="notif-list" id="notif-list">
+                <li>System: Welcome to the Owner Dashboard!</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="owner-script.js"></script>
+</body>
+</html>

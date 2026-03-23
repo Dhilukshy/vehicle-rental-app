@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | DriveEase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="customer-view">
+    <nav class="glass-nav">
+        <h2 style="font-weight: 800;">DriveEase</h2>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span id="userName" style="font-weight: 700;"></span>
+            <div id="userAv" style="width:35px; height:35px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold;"></div>
+            <button onclick="location.href='index.html'" style="margin-left:10px; background:none; border:none; color:var(--slate); cursor:pointer; font-size:0.8rem;">Logout</button>
+        </div>
+    </nav>
+
+    <main style="padding: 3rem 5%; max-width: 1400px; margin: 0 auto;">
+        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem;">Find your perfect ride.</h1>
+        
+        <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 1.5rem; scrollbar-width: none;">
+            <div class="cat-pill active" onclick="filter('All', this)">All</div>
+            <div class="cat-pill" onclick="filter('Car', this)">Cars</div>
+            <div class="cat-pill" onclick="filter('Van', this)">Vans</div>
+            <div class="cat-pill" onclick="filter('Bus', this)">Buses</div> <div class="cat-pill" onclick="filter('Bike', this)">Bikes</div>
+            <div class="cat-pill" onclick="filter('3-Wheeler', this)">3-Wheelers</div>
+        </div>
+
+        <div id="list" class="vehicle-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;"></div>
+    </main>
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <button onclick="closeModal()" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:2rem; cursor:pointer; color: var(--slate);">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const name = localStorage.getItem('user') || "Guest";
+        document.getElementById('userName').innerText = name;
+        document.getElementById('userAv').innerText = name[0].toUpperCase();
+        filter('All', document.querySelector('.cat-pill'));
+    </script>
+</body>
+</html>
